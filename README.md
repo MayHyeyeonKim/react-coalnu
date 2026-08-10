@@ -1,60 +1,42 @@
-# Codingnoona - react
-## Week 1: The First Step is Always the Hardest! Let's Get Through the First Week! 🚀🚀
+# React Study Plan
 
-| Day | Lecture | Assignment | Difficulty | Submit | 
-| --- | --- | --- | --- | --- |
-| Mon | 1. React Basics Lecture 1~5 | None | Easy | ✅|
-| Tue | 2. First Project: Rock-Paper-Scissors Game Lecture 1~4 | Submit the result up to Lecture 4 | Easy | ✅|
-| Wed | 2. First Project: Rock-Paper-Scissors Game Lecture 5~6 | Final result | Medium | ✅|
-| Thu | 3. Class Components | Convert Rock-Paper-Scissors Game to Class Components | Easy |  ✅|
-| Fri | 4. React Lifecycle Lecture 1~2 | None | Easy |  ✅|
-| Sat | 5. Second Project: Weather App Lecture 1~6 | Submit the result up to Lecture 6 | Medium |  ✅|
-| Sun | 5. Second Project: Weather App Lecture 7~9 | Submit the final result | Medium |  ✅|
+## 1주차
 
-## Week 2: You Can Create Multiple Pages with React? 🎮🕹️
+- [ ] **2026-08-09** — 리액트 기초 1~5
 
-| Day | Lecture | Assignment | Difficulty | Submit |
-| --- | --- | --- | --- | --- |
-| Mon | Day Off |  |  | ✅|
-| Tue | 6. Router: How to Create Multi-Page Websites Lecture 1~6 | None | Easy | ✅|
-| Wed | 7. Third Project: Create an E-commerce Website Lecture 1~5 | Submit the result up to Lecture 5 | Medium |  ✅|
-| Thu | 7. Third Project: Create an E-commerce Website Lecture 6~9 | Submit the final result up to Lecture 9 | Medium | ✅|
-| Fri | 7. Third Project: Create an E-commerce Website Lecture 10~13 | Submit the final E-commerce website result (including challenges) | Hard | ✅|
-| Sat | Day Off |  |  | ✅|
-| Sun | 8. Redux: The Game Changer Lecture 1~6 | Submit the Redux Counter (including challenges) | Medium | ✅|
+## 2주차
 
-## Week 3: Learn How Components Communicate with Each Other! 🛜
+- [ ] **2026-08-10** — 가위바위보 게임 1~4
+- [ ] **2026-08-11** — 가위바위보 게임 5~6
+- [ ] **2026-08-12** — 리액트 라이프 사이클
+- [ ] **2026-08-13** — 날씨앱 만들기 1~6강
+- [ ] **2026-08-14** — 날씨앱 만들기 7~9강
+- [ ] **2026-08-15** — 쉬는 날
+- [ ] **2026-08-16** — 라우터 1~6
 
-| Day | Lecture | Assignment | Difficulty | Submit |
-| --- | --- | --- | --- | --- |
-| Mon | 9. Fourth Project: Contact Page (Redux ver.) Lecture 1~8 | Complete the Contact Page | Medium | ✅|
-| Tue | 10. Redux Middleware Lecture 1~6 | Submit the final result | Medium | ✅|
-| Wed | Bonus Track: Use the Latest Redux - Redux Toolkit Bonus Track 2: createAsyncThunk | Submit the final result | Easy | ✅|
-| Thu | 11. React Query Lecture 1~4 | None | Easy | ✅|
-| Fri | 11. React Query Lecture 5~10 | None | Easy | ✅|
-| Sat | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 1~5 | Submit the result domain | Medium | ✅|
-| Sun | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 6~7 | Submit the result domain | Medium | ✅|
+## 3주차
 
-## Week 4: The Intensive Week! Let's Give It All for the Final Week of React Lectures! 🔥
+- [ ] **2026-08-17** — 쇼핑몰 페이지 만들기 1~5강
+- [ ] **2026-08-18** — 쇼핑몰 페이지 만들기 6~9강
+- [ ] **2026-08-19** — 쇼핑몰 페이지 만들기 10~13강
+- [ ] **2026-08-20** — 쉬는 날
+- [ ] **2026-08-21** — Zustand 1~2
+- [ ] **2026-08-22** — 연락처 페이지 만들기 1~8강
+- [ ] **2026-08-23** — 리액트 쿼리 1~4강
 
-| Day | Lecture | Assignment | Difficulty | Submit |
-| --- | --- | --- | --- | --- |
-| Mon | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 8~9 | Submit the result domain | Easy | ✅|
-| Tue | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 10~12 | Submit the result domain | Medium | ✅|
-| Wed | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 13~14 | Submit the result domain | Medium | ✅|
-| Thu | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 15 |  | Hard | ✅|
-| Fri | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 15 |  | Hard | ✅|
-| Sat | 12. (✨2024 Latest Update) Build a Netflix Clone Lecture 15 | Submit the final result | Hard | ✅|
-| Sun | Group Project OT 9 PM~11 PM | OT link to be announced on Slack channel |  | ✅|
+## 4주차
 
-## Week 5: The Week of the React Group Project 👪
+- [ ] **2026-08-24** — 리액트 쿼리 5~10강
+- [ ] **2026-08-25** — 쉬는 날
+- [ ] **2026-08-26** — 테스트
+- [ ] **2026-08-27** — 넷플릭스 1~5강
+- [ ] **2026-08-28** — 넷플릭스 6~7강
+- [ ] **2026-08-29** — 넷플릭스 8~9강
+- [ ] **2026-08-30** — 넷플릭스 10~12강
 
-| Day | Lecture | Assignment | Difficulty | Submit |
-| --- | --- | --- | --- | --- |
-| Mon |  | Define team project topic and roles |  | ✅|
-| Tue |  | Team Project |  | ✅|
-| Wed |  | Team Project |  | ✅|
-| Thu |  | Team Project |  | ✅|
-| Fri |  | Team Project |  | ✅|
-| Sat |  | Team Project |  | ✅|
-| Sun | Group Project Presentation 8 PM~11 PM | Submit the final team project result |  | ⏳|
+## 5주차
+
+- [ ] **2026-08-31** — 넷플릭스 13~14강
+- [ ] **2026-09-01** — 넷플릭스 15강
+- [ ] **2026-09-02** — 최종 마무리
+- [ ] **2026-09-03** — 최종 마무리
