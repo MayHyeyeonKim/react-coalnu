@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">게임 시작 전 대기 이미지</title>
+  <defs>
+    <linearGradient id="card" x1=".1" y1="0" x2=".9" y2="1">
+      <stop stop-color="#3e3061"/>
+      <stop offset="1" stop-color="#171125"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#c9baff"/>
+      <stop offset="1" stop-color="#7c55ed"/>
+    </linearGradient>
+  </defs>
+  <rect x="38" y="28" width="164" height="184" rx="30" fill="#0c0914" opacity=".65" transform="translate(0 8)"/>
+  <rect x="38" y="28" width="164" height="184" rx="30" fill="url(#card)" stroke="#7d66ba" stroke-width="3"/>
+  <rect x="52" y="42" width="136" height="156" rx="21" fill="none" stroke="#8b72ce" stroke-dasharray="4 8" stroke-width="2" opacity=".65"/>
+  <path fill="none" stroke="url(#mark)" stroke-linecap="round" stroke-width="18" d="M91 92c4-21 20-32 40-30 21 2 34 17 32 35-2 17-14 24-27 31-11 6-16 12-16 23"/>
+  <circle cx="119" cy="174" r="10" fill="#a78cff"/>
+</svg>

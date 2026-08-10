@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">바위</title>
+  <defs>
+    <linearGradient id="rock-base" x1=".15" y1=".05" x2=".82" y2=".92">
+      <stop offset="0" stop-color="#d1c7ff"/>
+      <stop offset=".48" stop-color="#8b70d8"/>
+      <stop offset="1" stop-color="#443361"/>
+    </linearGradient>
+    <linearGradient id="rock-face" x1=".2" y1="0" x2=".8" y2="1">
+      <stop stop-color="#b9a8f3"/>
+      <stop offset="1" stop-color="#65518e"/>
+    </linearGradient>
+  </defs>
+  <path fill="#221a34" opacity=".55" d="M42 169 61 83l47-44 62 16 31 54-12 71-52 28-65-13z" transform="translate(0 10)"/>
+  <path fill="url(#rock-base)" stroke="#e2dbff" stroke-width="3" stroke-linejoin="round" d="m38 162 19-84 47-44 62 16 32 54-13 71-52 28-64-13z"/>
+  <path fill="url(#rock-face)" d="m57 78 47-44 8 63-40 45-34 20z"/>
+  <path fill="#745ca4" d="m112 97 54-47 32 54-36 31z"/>
+  <path fill="#56406f" d="m72 142 40-45 50 38-29 68-64-13z"/>
+  <path fill="#8068b4" d="m162 135 36-31-13 71-52 28z"/>
+  <path fill="none" stroke="#eeeaff" stroke-linecap="round" stroke-width="5" opacity=".35" d="m72 73 32-25m-50 84 9-37"/>
+</svg>

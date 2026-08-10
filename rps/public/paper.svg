@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">보</title>
+  <defs>
+    <linearGradient id="page" x1=".1" y1="0" x2=".9" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#d9d1ff"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#05020c" flood-opacity=".45"/></filter>
+  </defs>
+  <path fill="#372857" opacity=".7" d="M53 34h94l39 40v137H53z" transform="translate(0 5)"/>
+  <path fill="url(#page)" stroke="#efeaff" stroke-width="3" stroke-linejoin="round" d="M49 29h98l42 42v136H49z" filter="url(#shadow)"/>
+  <path fill="#a68cf4" d="M147 29v42h42z"/>
+  <path fill="none" stroke="#7861b6" stroke-linecap="round" stroke-width="7" d="M76 99h86M76 127h86M76 155h58"/>
+  <circle cx="159" cy="173" r="17" fill="#8f6ff0"/>
+  <path fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4" d="m151 173 6 6 11-13"/>
+</svg>

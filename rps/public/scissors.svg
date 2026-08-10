@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">가위</title>
+  <defs>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset=".5" stop-color="#c9c0e4"/>
+      <stop offset="1" stop-color="#776b91"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff7890"/>
+      <stop offset="1" stop-color="#bd3559"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#blade)" stroke="#eeeaff" stroke-width="3" stroke-linejoin="round" d="m104 134 18-22L199 31l-12 35-61 83z"/>
+  <path fill="url(#blade)" stroke="#eeeaff" stroke-width="3" stroke-linejoin="round" d="m126 134-18-22-77-81 12 35 61 83z"/>
+  <circle cx="115" cy="133" r="14" fill="#f6d777" stroke="#fff0ae" stroke-width="3"/>
+  <path fill="none" stroke="url(#handle)" stroke-width="15" d="m104 144-27 29m49-29 28 29"/>
+  <circle cx="64" cy="187" r="27" fill="none" stroke="#e64e70" stroke-width="15"/>
+  <circle cx="168" cy="187" r="27" fill="none" stroke="#e64e70" stroke-width="15"/>
+  <path fill="none" stroke="#fff" stroke-linecap="round" stroke-width="5" opacity=".55" d="m183 45-30 36M46 48l30 33"/>
+</svg>
