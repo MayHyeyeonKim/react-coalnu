@@ -11,3 +11,5 @@ export const resultCopy: Record<Result, { title: string; description: string }> 
     lose: { title: "You Lose!", description: "Better luck next time!" },
     draw: { title: "It's a Draw!", description: "No one wins this round." },
 };
+
+export const winningScore = 5;

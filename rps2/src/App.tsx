@@ -1,46 +1,11 @@
 import "./App.css";
-import type { Choice, ChoiceDetails, Result } from "./types/game";
+import type { Choice, ChoiceDetails } from "./types/game";
 import { choices, resultCopy } from "./constants/game";
-import { getComputerChoice, getRoundResult } from "./lib/gameEngine";
-import { useState } from "react";
+import { useGame } from "./hooks/useGame";
 
 function App() {
-  const [playerChoice, setPlayerChoice] = useState<Choice | null>(null);
-  const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
-  const [result, setResult] = useState<Result | null>(null);
-
-  const [playerScore, setPlayerScore] = useState<number>(0);
-  const [computerScore, setComputerScore] = useState<number>(0);
-
-  const isGameOver = playerScore >= 5 || computerScore >= 5;
-
-  function playRound(choice: Choice) {
-    if (isGameOver) {
-      return;
-    }
-    setPlayerChoice(choice);
-    const computer = getComputerChoice();
-    setComputerChoice(computer);
-    const roundResult = getRoundResult(choice, computer);
-    setResult(roundResult);
-    updateScores(roundResult);
-  }
-
-  function resetMatch() {
-    setPlayerChoice(null);
-    setComputerChoice(null);
-    setResult(null);
-    setPlayerScore(0);
-    setComputerScore(0);
-  }
-
-  function updateScores(roundResult: Result) {
-    if (roundResult === "win") {
-      setPlayerScore((prevScore) => prevScore + 1);
-    } else if (roundResult === "lose") {
-      setComputerScore((prevScore) => prevScore + 1);
-    }
-  }
+  const { playerChoice, computerChoice, result, playerScore, computerScore, isGameOver, playRound, resetMatch } =
+    useGame();
 
   return (
     <>
@@ -63,8 +28,8 @@ function App() {
         </div>
       </div>
 
+      {/* playing card */}
       <div className="game">
-        {/* playing card */}
         <div className="card">
           <article className="fighter-card">
             <div className="fighter-heading"> YOUR MOVE </div>
