@@ -1,0 +1,23 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.fighter-image img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.choice-button img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

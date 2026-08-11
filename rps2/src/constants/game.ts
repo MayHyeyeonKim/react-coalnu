@@ -1,9 +1,9 @@
 import type { Choice, ChoiceDetails, Result } from "../types/game";
 
 export const choices: Record<Choice, ChoiceDetails> = {
-    rock: { label: "Rock", image: "/shiba-rock.png", shortcut: "r" },
-    paper: { label: "Paper", image: "/shiba-paper.png", shortcut: "p" },
-    scissors: { label: "Scissors", image: "/shiba-scissors.png", shortcut: "s" },
+    rock: { label: "Rock", image: "shiba-rps/shiba-rock.png", shortcut: "r" },
+    paper: { label: "Paper", image: "shiba-rps/shiba-paper.png", shortcut: "p" },
+    scissors: { label: "Scissors", image: "shiba-rps/shiba-scissors.png", shortcut: "s" },
 };
 
 export const resultCopy: Record<Result, { title: string; description: string }> = {
