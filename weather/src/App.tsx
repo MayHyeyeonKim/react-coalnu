@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { WeatherCard } from "./components/WeatherCard";
 import { WeatherDetailPage } from "./components/WeatherDetailPage";
-import type { Location } from "../src/types/Location";
-import type { Weather } from "../src/types/Weather";
 import { getWeatherByCoords } from "./services/weatherApi";
 import type { LocationWeather } from "./types/LocationWeather";
 
@@ -16,13 +14,9 @@ import type { LocationWeather } from "./types/LocationWeather";
  */
 
 function App() {
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
-
-  const [locations, setLocations] = useState<Location[]>([]);
-
-  const [weather, setWeather] = useState<Weather | null>(null);
-
-  const [locationWeather, setLocationWeather] = useState<LocationWeather[]>([]);
+  const [selectedLocationWeather, setSelectedLocationWeather] = useState<LocationWeather | null>(null);
+  const [locationWeathers, setLocationWeathers] = useState<LocationWeather[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -32,23 +26,7 @@ function App() {
       const data = await getWeatherByCoords(latitude, longitude);
       console.log("data: ", data);
 
-      setWeather({
-        temperature: data.main.temp,
-        high: data.main.temp_max,
-        low: data.main.temp_min,
-        condition: data.weather[0].main,
-      });
-
-      setLocations([
-        {
-          id: "current",
-          name: data.name,
-          longitude: data.coord.lon,
-          latitude: data.coord.lat,
-        },
-      ]);
-
-      setLocationWeather([
+      setLocationWeathers([
         {
           location: {
             id: "current",
@@ -64,28 +42,33 @@ function App() {
           },
         },
       ]);
+
+      setIsLoading(false);
     });
   }, []);
 
-  if (selectedLocation) {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (selectedLocationWeather) {
     return (
       <WeatherDetailPage
-        location={selectedLocation}
+        locationWeather={selectedLocationWeather}
         onBack={() => {
-          setSelectedLocation(null);
+          setSelectedLocationWeather(null);
         }}
       />
     );
   }
   return (
     <>
-      {locationWeather.map((item) => {
+      {locationWeathers.map((item) => {
         return (
           <WeatherCard
             key={item.location.id}
-            location={item.location}
-            weather={item.weather}
-            setSelectedLocation={setSelectedLocation}
+            locationWeather={item}
+            setSelectedLocationWeather={setSelectedLocationWeather}
           />
         );
       })}
