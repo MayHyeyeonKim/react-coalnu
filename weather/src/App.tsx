@@ -91,6 +91,10 @@ function App() {
     setSearchResults([]);
   };
 
+  const handleRemoveLocation = (locationId: string) => {
+    setLocationWeathers((prev) => prev.filter((item) => item.location.id !== locationId));
+  };
+
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
     month: "long",
@@ -167,6 +171,7 @@ function App() {
               unit={unit}
               index={index}
               setSelectedLocationWeather={setSelectedLocationWeather}
+              onRemove={item.location.id === "current" ? undefined : handleRemoveLocation}
             />
           ))}
 
