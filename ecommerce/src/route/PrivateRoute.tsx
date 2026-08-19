@@ -6,7 +6,7 @@ interface PrivateRouteProps {
 }
 
 function PrivateRoute({ authenticate }: PrivateRouteProps) {
-  return authenticate ? <ProductDetail authenticate={authenticate} /> : <Navigate to="/login" />;
+  return authenticate ? <ProductDetail /> : <Navigate to="/login" />;
 }
 
 export default PrivateRoute;
