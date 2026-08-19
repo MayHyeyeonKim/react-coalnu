@@ -1,8 +1,4 @@
-interface ProductDetailProps {
-  authenticate: boolean;
-}
-
-const ProductDetail = ({ authenticate }: ProductDetailProps) => {
+const ProductDetail = () => {
   return <div>ProductDetail</div>;
 };
 
