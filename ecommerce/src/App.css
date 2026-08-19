@@ -1,4 +1,4 @@
-.navbar {
+.site-navbar {
   position: relative;
   min-height: 174px;
   padding: 18px 5% 14px;
@@ -129,7 +129,7 @@
 }
 
 @media (max-width: 640px) {
-  .navbar {
+  .site-navbar {
     min-height: 190px;
   }
 

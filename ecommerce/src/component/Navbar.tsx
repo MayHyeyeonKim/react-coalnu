@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="navbar">
+    <header className="site-navbar">
       {/* Login */}
       <button className="login-button" type="button" onClick={() => navigate("/login")}>
         <FontAwesomeIcon icon={faUser} />
