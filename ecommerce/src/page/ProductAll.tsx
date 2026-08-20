@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
 import type { Product } from "../component/ProductCard";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const ProductAll = () => {
   const [productList, setProductList] = useState<Product[]>([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const [query] = useSearchParams();
+  const searchQuery = query.get("search")?.trim() || "";
 
   const ITEMS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +18,8 @@ const ProductAll = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const searchQuery = query.get("search") || "";
+        setLoading(true);
+        setError("");
 
         const response = await fetch("/db.json");
 
@@ -32,11 +37,13 @@ const ProductAll = () => {
         setCurrentPage(1);
       } catch {
         setError("We couldn't load the coffee beans. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
     getProducts();
-  }, [query]);
+  }, [searchQuery]);
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -55,25 +62,74 @@ const ProductAll = () => {
         <h1>Shop Coffee</h1>
       </div>
 
-      <div className="product-grid">
-        {currentProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {loading ? (
+        <p className="product-message">Loading coffee...</p>
+      ) : productList.length === 0 ? (
+        <div className="empty-products">
+          <div className="empty-search-visual">
+            <span className="empty-bean empty-bean-one" />
+            <span className="empty-bean empty-bean-two" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </div>
 
-      <div className="product-pagination">
-        <button type="button" disabled={currentPage === 1} onClick={() => setCurrentPage((page) => page - 1)}>
-          Previous
-        </button>
+          <p className="empty-eyebrow">Search came up empty</p>
+          <h2>No coffee found</h2>
+          {searchQuery ? (
+            <p className="empty-copy">
+              We couldn't find a coffee matching <strong>“{searchQuery}”</strong>.
+              <br />
+              Try a different name or explore one of these origins.
+            </p>
+          ) : (
+            <p className="empty-copy">There are no coffees available right now. Please check back soon.</p>
+          )}
 
-        <span>
-          {currentPage} / {totalPages}
-        </span>
+          {searchQuery && (
+            <div className="empty-suggestions">
+              <span>Try:</span>
+              <Link to="/?search=Ethiopia">Ethiopia</Link>
+              <Link to="/?search=Colombia">Colombia</Link>
+              <Link to="/?search=Brazil">Brazil</Link>
+            </div>
+          )}
 
-        <button type="button" disabled={currentPage === totalPages} onClick={() => setCurrentPage((page) => page + 1)}>
-          Next
-        </button>
-      </div>
+          <Link className="empty-reset" to="/">
+            View all coffee <span>→</span>
+          </Link>
+        </div>
+      ) : (
+        <>
+          <div className="product-grid">
+            {currentProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="product-pagination">
+              <button
+                type="button"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((page) => page - 1)}
+              >
+                Previous
+              </button>
+
+              <span>
+                {currentPage} / {totalPages}
+              </span>
+
+              <button
+                type="button"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((page) => page + 1)}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </main>
   );
 };
