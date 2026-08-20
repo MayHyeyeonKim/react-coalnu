@@ -13,7 +13,6 @@ const Login = ({ setAuthenticate }: LoginProps) => {
   const navigate = useNavigate();
   const loginUser = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("login");
     setAuthenticate(true);
     navigate("/");
   };

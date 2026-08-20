@@ -5,10 +5,23 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+interface NavbarProps {
+  authenticate: boolean;
+  setAuthenticate: (authenticate: boolean) => void;
+}
+
+const Navbar = ({ authenticate, setAuthenticate }: NavbarProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const menuList: string[] = ["Coffee", "Subscriptions", "Our Story"];
+
+  const handleLogin = () => {
+    if (authenticate) {
+      setAuthenticate(false);
+    } else {
+      navigate("/login");
+    }
+  };
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,9 +32,9 @@ const Navbar = () => {
   return (
     <header className="site-navbar">
       {/* Login */}
-      <button className="login-button" type="button" onClick={() => navigate("/login")}>
+      <button className="login-button" type="button" onClick={handleLogin}>
         <FontAwesomeIcon icon={faUser} />
-        <span>Login</span>
+        <span>{authenticate ? "Logout" : "Login"}</span>
       </button>
 
       {/* Logo */}
