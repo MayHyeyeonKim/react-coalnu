@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
@@ -10,12 +10,25 @@ interface LoginProps {
 }
 
 const Login = ({ setAuthenticate }: LoginProps) => {
+  const [rememberMe, setRememberMe] = useState(false);
+
   const navigate = useNavigate();
+
   const loginUser = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (rememberMe) {
+      localStorage.setItem("authenticated", "true");
+      sessionStorage.removeItem("authenticated");
+    } else {
+      sessionStorage.setItem("authenticated", "true");
+      localStorage.removeItem("authenticated");
+    }
+
     setAuthenticate(true);
     navigate("/");
   };
+
   return (
     <main className="login-page">
       <Container>
@@ -38,7 +51,12 @@ const Login = ({ setAuthenticate }: LoginProps) => {
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Remember me" />
+            <Form.Check
+              type="checkbox"
+              label="Remember me"
+              checked={rememberMe}
+              onChange={(event) => setRememberMe(event.target.checked)}
+            />
           </Form.Group>
 
           <Button className="login-submit" type="submit">

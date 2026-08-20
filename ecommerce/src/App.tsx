@@ -22,7 +22,9 @@ import OurStory from "./page/OurStory";
  */
 
 function App() {
-  const [authenticate, setAuthenticate] = useState(false);
+  const [authenticate, setAuthenticate] = useState(
+    () => localStorage.getItem("authenticated") === "true" || sessionStorage.getItem("authenticated") === "true",
+  );
 
   return (
     <>

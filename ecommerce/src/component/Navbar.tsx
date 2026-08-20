@@ -21,7 +21,10 @@ const Navbar = ({ authenticate, setAuthenticate }: NavbarProps) => {
 
   const handleLogin = () => {
     if (authenticate) {
+      localStorage.removeItem("authenticated");
+      sessionStorage.removeItem("authenticated");
       setAuthenticate(false);
+      navigate("/");
     } else {
       navigate("/login");
     }
