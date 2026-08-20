@@ -5,6 +5,8 @@ import ProductAll from "./page/ProductAll";
 import Login from "./page/Login";
 import Navbar from "./component/Navbar";
 import PrivateRoute from "./route/PrivateRoute";
+import Subscriptions from "./page/Subscriptions";
+import OurStory from "./page/OurStory";
 
 /**
  * 1. 전체 상품 페이지, 로그인, 상품detail page
@@ -28,6 +30,8 @@ function App() {
       <Routes>
         <Route path="" element={<ProductAll />}></Route>
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate} />}></Route>
+        <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/our-story" element={<OurStory />} />
         <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
       </Routes>
     </>

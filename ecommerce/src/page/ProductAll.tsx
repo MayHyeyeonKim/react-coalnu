@@ -8,6 +8,9 @@ const ProductAll = () => {
   const [error, setError] = useState("");
   const [query] = useSearchParams();
 
+  const ITEMS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -26,6 +29,7 @@ const ProductAll = () => {
         );
 
         setProductList(filteredProducts);
+        setCurrentPage(1);
       } catch {
         setError("We couldn't load the coffee beans. Please try again.");
       }
@@ -33,6 +37,12 @@ const ProductAll = () => {
 
     getProducts();
   }, [query]);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
+  const currentProducts = productList.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(productList.length / ITEMS_PER_PAGE);
 
   if (error) {
     return <p className="product-message">{error}</p>;
@@ -46,9 +56,23 @@ const ProductAll = () => {
       </div>
 
       <div className="product-grid">
-        {productList.map((product) => (
+        {currentProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
+      </div>
+
+      <div className="product-pagination">
+        <button type="button" disabled={currentPage === 1} onClick={() => setCurrentPage((page) => page - 1)}>
+          Previous
+        </button>
+
+        <span>
+          {currentPage} / {totalPages}
+        </span>
+
+        <button type="button" disabled={currentPage === totalPages} onClick={() => setCurrentPage((page) => page + 1)}>
+          Next
+        </button>
       </div>
     </main>
   );

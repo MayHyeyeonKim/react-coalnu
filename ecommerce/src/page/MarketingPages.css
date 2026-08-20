@@ -1,0 +1,361 @@
+.marketing-page {
+  background: #fffdf9;
+  color: #29180f;
+}
+
+.marketing-hero {
+  display: grid;
+  min-height: 530px;
+  place-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.subscription-hero {
+  background:
+    linear-gradient(rgba(37, 21, 13, 0.7), rgba(37, 21, 13, 0.7)),
+    url("https://images.unsplash.com/photo-1497515114629-f71d768fd07c?auto=format&fit=crop&w=1800&q=85") center / cover;
+  color: #fffdf9;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #a96e4d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.subscription-hero .eyebrow {
+  color: #e3b98f;
+}
+
+.marketing-hero h1,
+.story-hero h1 {
+  max-width: 760px;
+  margin: 0 auto;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 7vw, 76px);
+  font-weight: 500;
+  line-height: 1.02;
+}
+
+.hero-copy {
+  max-width: 610px;
+  margin: 24px auto 30px;
+  color: #efe5da;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid #6f3f28;
+  border-radius: 3px;
+  background: #6f3f28;
+  color: #fffdf9;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.subscription-hero .primary-link {
+  margin: 0 auto;
+  border-color: #fffdf9;
+  background: #fffdf9;
+  color: #4d2b1a;
+}
+
+.steps-section,
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 72px 24px;
+}
+
+.steps-section > div,
+.values-grid article {
+  padding: 10px 36px;
+  border-right: 1px solid #e6d9cc;
+}
+
+.steps-section > div:last-child,
+.values-grid article:last-child {
+  border-right: 0;
+}
+
+.steps-section span,
+.values-grid span {
+  color: #b78a6c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+}
+
+.steps-section h2,
+.values-grid h3 {
+  margin: 14px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.steps-section p,
+.values-grid p {
+  margin: 0;
+  color: #766357;
+  line-height: 1.7;
+}
+
+.plans-section {
+  padding: 80px 24px 90px;
+  background: #f4eee6;
+}
+
+.section-heading {
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.section-heading h2,
+.marketing-cta h2,
+.story-intro h2,
+.story-feature h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 500;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  position: relative;
+  padding: 34px;
+  border: 1px solid #dfd1c3;
+  background: #fffdf9;
+}
+
+.featured-plan {
+  border: 2px solid #6f3f28;
+}
+
+.plan-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 11px;
+  background: #6f3f28;
+  color: #fffdf9;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.plan-card h3 {
+  margin: 0 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.plan-card > p {
+  min-height: 75px;
+  color: #766357;
+  line-height: 1.6;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.plan-price strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.plan-price span,
+.plan-card small {
+  color: #8b776a;
+}
+
+.plan-card ul {
+  min-height: 112px;
+  margin: 26px 0;
+  padding: 22px 0 0;
+  border-top: 1px solid #e8e0d6;
+  list-style: none;
+}
+
+.plan-card li {
+  margin-bottom: 9px;
+  color: #5f483a;
+  font-size: 13px;
+}
+
+.plan-card li::before {
+  margin-right: 8px;
+  color: #9a684b;
+  content: "✓";
+}
+
+.plan-card button {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #6f3f28;
+  border-radius: 3px;
+  background: transparent;
+  color: #6f3f28;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.featured-plan button {
+  background: #6f3f28;
+  color: #fffdf9;
+}
+
+.marketing-cta {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: #6f3f28;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.story-hero,
+.story-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.story-hero-copy,
+.story-feature > div:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 8vw, 120px);
+  background: #f4eee6;
+}
+
+.story-hero-copy p:last-child,
+.story-feature p:not(.eyebrow) {
+  margin: 24px 0 0;
+  color: #6f5c50;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.story-hero-image,
+.story-feature-image {
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.story-hero-image img,
+.story-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-intro {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 100px 24px 50px;
+  text-align: center;
+}
+
+.story-intro > p:last-child {
+  margin: 28px 0 0;
+  color: #6f5c50;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.values-grid {
+  padding-top: 45px;
+  padding-bottom: 110px;
+}
+
+.story-feature > div:last-child {
+  background: #2f2119;
+  color: #fffdf9;
+}
+
+.story-feature .eyebrow {
+  color: #d4a783;
+}
+
+.story-feature p:not(.eyebrow) {
+  color: #d9cec4;
+}
+
+.story-feature .primary-link {
+  margin-top: 28px;
+  border-color: #fffdf9;
+  background: #fffdf9;
+  color: #4d2b1a;
+}
+
+@media (max-width: 860px) {
+  .plan-grid,
+  .steps-section,
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-section > div,
+  .values-grid article {
+    padding: 28px 0;
+    border-right: 0;
+    border-bottom: 1px solid #e6d9cc;
+  }
+
+  .steps-section > div:last-child,
+  .values-grid article:last-child {
+    border-bottom: 0;
+  }
+
+  .plan-card > p,
+  .plan-card ul {
+    min-height: 0;
+  }
+
+  .story-hero,
+  .story-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .story-hero-image,
+  .story-feature-image {
+    min-height: 380px;
+  }
+
+  .story-feature-image {
+    order: 2;
+  }
+}

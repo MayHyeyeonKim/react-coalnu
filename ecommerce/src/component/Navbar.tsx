@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 interface NavbarProps {
   authenticate: boolean;
@@ -13,7 +13,11 @@ interface NavbarProps {
 const Navbar = ({ authenticate, setAuthenticate }: NavbarProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const menuList: string[] = ["Coffee", "Subscriptions", "Our Story"];
+  const menuList = [
+    { label: "Coffee", path: "/" },
+    { label: "Subscriptions", path: "/subscriptions" },
+    { label: "Our Story", path: "/our-story" },
+  ];
 
   const handleLogin = () => {
     if (authenticate) {
@@ -51,8 +55,12 @@ const Navbar = ({ authenticate, setAuthenticate }: NavbarProps) => {
       {/* Menu */}
       <div className="menu">
         <ul>
-          {menuList.map((menu, index) => (
-            <li key={index}>{menu}</li>
+          {menuList.map((menu) => (
+            <li key={menu.path}>
+              <NavLink to={menu.path} end={menu.path === "/"}>
+                {menu.label}
+              </NavLink>
+            </li>
           ))}
         </ul>
       </div>
