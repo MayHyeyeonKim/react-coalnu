@@ -6,7 +6,7 @@ type Contact = {
   phoneNumber: string;
 };
 
-type AddContactResult =
+type ContactMutationResult =
   | {
       success: true;
     }
@@ -18,7 +18,9 @@ type AddContactResult =
 
 type PhoneBookStore = {
   phoneBook: Contact[];
-  addContact: (name: string, phoneNumber: string) => AddContactResult;
+  addContact: (name: string, phoneNumber: string) => ContactMutationResult;
+  updateContact: (id: number, name: string, phoneNumber: string) => ContactMutationResult;
+  deleteContact: (id: number) => void;
 };
 
 const normalizePhone = (phoneNumber: string) => phoneNumber.replace(/\D/g, "");
@@ -64,6 +66,45 @@ const usePhoneBookStore = create<PhoneBookStore>((set, get) => ({
     }));
     return { success: true };
   },
+  updateContact: (id, name, phoneNumber) => {
+    const normalizedName = normalizeName(name);
+    const normalizedPhone = normalizePhone(phoneNumber);
+    const otherContacts = get().phoneBook.filter((contact) => contact.id !== id);
+
+    const contactWithSameName = otherContacts.find((contact) => normalizeName(contact.name) === normalizedName);
+
+    if (contactWithSameName) {
+      return {
+        success: false,
+        reason: "duplicate-name",
+        existingContact: contactWithSameName,
+      };
+    }
+
+    const contactWithSamePhone = otherContacts.find(
+      (contact) => normalizePhone(contact.phoneNumber) === normalizedPhone,
+    );
+
+    if (contactWithSamePhone) {
+      return {
+        success: false,
+        reason: "duplicate-phone",
+        existingContact: contactWithSamePhone,
+      };
+    }
+
+    set((state) => ({
+      phoneBook: state.phoneBook.map((contact) =>
+        contact.id === id ? { ...contact, name, phoneNumber } : contact,
+      ),
+    }));
+
+    return { success: true };
+  },
+  deleteContact: (id) =>
+    set((state) => ({
+      phoneBook: state.phoneBook.filter((contact) => contact.id !== id),
+    })),
 }));
 
 export default usePhoneBookStore;

@@ -138,6 +138,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  width: 100%;
   padding: 12px 4px;
   border-bottom: 1px solid #f0f0f3;
 }
@@ -161,6 +162,7 @@
 
 .contact-details {
   display: grid;
+  min-width: 0;
   gap: 3px;
 }
 
@@ -175,6 +177,80 @@
   text-decoration: none;
 }
 
+.contact-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.contact-actions .MuiButton-root {
+  min-width: auto;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.contact-actions .edit-button {
+  color: #c2410c;
+  background: #fff7ed;
+}
+
+.contact-actions .edit-button:hover {
+  background: #ffedd5;
+}
+
+.contact-actions .delete-button {
+  color: #8b8b95;
+}
+
+.contact-actions .delete-button:hover {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.editing-card {
+  display: grid;
+  padding: 16px 4px;
+}
+
+.edit-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.edit-fields .MuiOutlinedInput-root {
+  border-radius: 8px;
+  background: white;
+  font-size: 13px;
+}
+
+.edit-fields .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #f97316;
+}
+
+.edit-actions {
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-left: 0;
+}
+
+.contact-actions .cancel-button {
+  color: #7c7c86;
+}
+
+.contact-actions .save-button {
+  color: white;
+  background: #f97316;
+}
+
+.contact-actions .save-button:hover {
+  background: #ea580c;
+}
+
 @media (max-width: 700px) {
   .app {
     width: min(100% - 32px, 520px);
@@ -187,5 +263,9 @@
 
   .card {
     padding: 22px;
+  }
+
+  .edit-fields {
+    grid-template-columns: 1fr;
   }
 }
