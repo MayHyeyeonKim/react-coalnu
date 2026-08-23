@@ -5,6 +5,8 @@ import usePhoneBookStore from "../stores/usePhoneBookStore";
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const { addContact } = usePhoneBookStore();
 
   const handleAdd = (event: FormEvent<HTMLFormElement>) => {
@@ -14,7 +16,19 @@ const ContactForm = () => {
     const trimmedPhoneNumber = phoneNumber.trim();
     if (!trimmedName || !trimmedPhoneNumber) return;
 
-    addContact(trimmedName, trimmedPhoneNumber);
+    const result = addContact(trimmedName, trimmedPhoneNumber);
+
+    if (!result.success) {
+      if (result.reason === "duplicate-name") {
+        setNameError(`${result.existingContact.name} is already registered.`);
+      } else {
+        setPhoneError(`This phone number is already registered to ${result.existingContact.name}.`);
+      }
+      return;
+    }
+
+    setNameError("");
+    setPhoneError("");
     setName("");
     setPhoneNumber("");
   };
@@ -27,8 +41,39 @@ const ContactForm = () => {
       </div>
 
       <div className="form-fields">
-        <TextField className="contact-field" id="contact-name" label="Full name" placeholder="e.g. Jamie Lee" variant="outlined" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" fullWidth />
-        <TextField className="contact-field" id="contact-phone" label="Phone number" placeholder="(555) 123-4567" variant="outlined" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} autoComplete="tel" type="tel" fullWidth />
+        <TextField
+          className="contact-field"
+          id="contact-name"
+          label="Full name"
+          placeholder="e.g. Jamie Lee"
+          variant="outlined"
+          value={name}
+          onChange={(event) => {
+            setName(event.target.value);
+            setNameError("");
+          }}
+          autoComplete="name"
+          error={Boolean(nameError)}
+          helperText={nameError}
+          fullWidth
+        />
+        <TextField
+          className="contact-field"
+          id="contact-phone"
+          label="Phone number"
+          placeholder="(555) 123-4567"
+          variant="outlined"
+          value={phoneNumber}
+          onChange={(event) => {
+            setPhoneNumber(event.target.value);
+            setPhoneError("");
+          }}
+          autoComplete="tel"
+          type="tel"
+          error={Boolean(phoneError)}
+          helperText={phoneError}
+          fullWidth
+        />
         <Button className="add-button" size="large" type="submit" variant="contained">
           Add Contact
         </Button>
