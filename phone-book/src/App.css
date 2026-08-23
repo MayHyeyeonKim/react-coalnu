@@ -1,0 +1,191 @@
+.app {
+  width: min(960px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.logo {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  color: white;
+  background: #f97316;
+  font-size: 20px;
+  font-weight: 700;
+  place-items: center;
+}
+
+.header h1,
+.form-copy h2,
+.contacts-heading h2 {
+  margin: 0;
+  color: #20202a;
+}
+
+.header h1 {
+  font-size: 28px;
+}
+
+.header p,
+.form-copy p {
+  margin: 4px 0 0;
+  color: #777783;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  padding: 28px;
+  border: 1px solid #e8e8ee;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 24px rgba(32, 32, 42, 0.06);
+}
+
+.form-copy {
+  margin-bottom: 24px;
+}
+
+.form-copy h2,
+.contacts-heading h2 {
+  font-size: 18px;
+}
+
+.form-copy p {
+  font-size: 14px;
+}
+
+.form-fields {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-field .MuiOutlinedInput-root {
+  border-radius: 10px;
+  background: #fff;
+}
+
+.contact-field .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #f97316;
+}
+
+.contact-field .MuiInputLabel-root.Mui-focused {
+  color: #f97316;
+}
+
+.form-fields .add-button {
+  min-height: 48px;
+  border-radius: 10px;
+  background: #f97316;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.form-fields .add-button:hover {
+  background: #ea580c;
+  box-shadow: none;
+}
+
+.contacts-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eeeeF2;
+}
+
+.contact-count {
+  color: #8b8b95;
+  font-size: 13px;
+}
+
+.empty-state {
+  padding: 64px 0;
+  color: #9999a3;
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+.contact-list {
+  display: grid;
+  gap: 4px;
+  max-height: 360px;
+  margin: 0;
+  padding: 12px 0 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px;
+  border-bottom: 1px solid #f0f0f3;
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #c2410c;
+  background: #ffedd5;
+  font-size: 12px;
+  font-weight: 700;
+  place-items: center;
+}
+
+.avatar-1 { color: #b45309; background: #fef3c7; }
+.avatar-2 { color: #c2410c; background: #ffedd5; }
+.avatar-3 { color: #9a3412; background: #fee2e2; }
+
+.contact-details {
+  display: grid;
+  gap: 3px;
+}
+
+.contact-details strong {
+  color: #292933;
+  font-size: 14px;
+}
+
+.contact-details a {
+  color: #7c7c86;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .app {
+    width: min(100% - 32px, 520px);
+    padding: 36px 0;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 22px;
+  }
+}
