@@ -37,6 +37,12 @@
   color: #fff;
 }
 
+.netflix-nav:has(.nav-link:hover) .nav-link.active:not(:hover),
+.netflix-nav:has(.nav-link:focus-visible) .nav-link.active:not(:focus-visible) {
+  background-color: transparent;
+  color: #b3b3b3;
+}
+
 .netflix-search {
   align-items: center;
   align-self: center;

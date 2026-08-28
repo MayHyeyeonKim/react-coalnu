@@ -3,12 +3,17 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 function AppLayout() {
+  const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const activeNav = location.pathname.startsWith("/movies")
+    ? "movies"
+    : location.hash.slice(1) || "home";
 
   useEffect(() => {
     if (!searchOpen) return;
@@ -42,18 +47,28 @@ function AppLayout() {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="netflix-nav me-auto my-2 my-lg-0" navbarScroll>
-              <Nav.Link as={NavLink} to="/" end>
+            <Nav className="netflix-nav me-auto my-2 my-lg-0" activeKey={activeNav} navbarScroll>
+              <Nav.Link as={Link} to="/" eventKey="home">
                 Home
               </Nav.Link>
-              <Nav.Link href="#shows">Shows</Nav.Link>
-              <Nav.Link as={NavLink} to="/movies">
+              <Nav.Link href="#shows" eventKey="shows">
+                Shows
+              </Nav.Link>
+              <Nav.Link as={Link} to="/movies" eventKey="movies">
                 Movies
               </Nav.Link>
-              <Nav.Link href="#games">Games</Nav.Link>
-              <Nav.Link href="#new-and-popular">New &amp; Popular</Nav.Link>
-              <Nav.Link href="#my-list">My List</Nav.Link>
-              <Nav.Link href="#languages">Browse by Languages</Nav.Link>
+              <Nav.Link href="#games" eventKey="games">
+                Games
+              </Nav.Link>
+              <Nav.Link href="#new-and-popular" eventKey="new-and-popular">
+                New &amp; Popular
+              </Nav.Link>
+              <Nav.Link href="#my-list" eventKey="my-list">
+                My List
+              </Nav.Link>
+              <Nav.Link href="#languages" eventKey="languages">
+                Browse by Languages
+              </Nav.Link>
             </Nav>
             <Form
               ref={searchRef}
