@@ -11,9 +11,7 @@ function AppLayout() {
   const searchRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const activeNav = location.pathname.startsWith("/movies")
-    ? "movies"
-    : location.hash.slice(1) || "home";
+  const activeNav = location.pathname.startsWith("/movies") ? "movies" : location.hash.slice(1) || "home";
 
   useEffect(() => {
     if (!searchOpen) return;
