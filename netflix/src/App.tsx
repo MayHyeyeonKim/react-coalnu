@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
 import Homepage from "./pages/Homepage/Homepage";
@@ -21,9 +23,9 @@ function App() {
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Homepage />} />
-        <Route path="/movies">
+        <Route path="movies">
           <Route index element={<MoviePage />} />
-          <Route path="/:id" element={<MovieDetailPage />} />
+          <Route path=":id" element={<MovieDetailPage />} />
         </Route>
       </Route>
 
