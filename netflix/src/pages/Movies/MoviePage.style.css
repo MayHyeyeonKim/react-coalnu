@@ -2,33 +2,68 @@
   background-color: #000;
   color: #fff;
   min-height: calc(100svh - 5rem);
-  padding: 2rem 0;
-}
-
-.movie-page-title,
-.movie-page-status,
-.movie-page-empty {
-  margin: 0;
-  padding: 0 3.75rem;
+  padding: 2rem 0 4rem;
 }
 
 .movie-page-title {
+  margin: 0;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
+  margin-bottom: 2rem;
+}
+
+.movie-page-status {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  min-height: calc(100svh - 5rem);
+  padding: 2rem 3.75rem;
+}
+
+.movie-results-header {
+  align-items: center;
+  color: #a3a3a3;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  min-height: 2rem;
+}
+
+.movie-results-grid {
+  display: grid;
+  gap: 1.25rem 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .movie-page-empty {
   color: #b3b3b3;
-  margin-top: 2rem;
+  margin: 0;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+@media (max-width: 991.98px) {
+  .movie-results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767.98px) {
   .movie-page {
-    padding: 1.25rem 0;
+    padding: 1.25rem 0 3rem;
   }
 
-  .movie-page-title,
-  .movie-page-status,
-  .movie-page-empty {
-    padding: 0 1rem;
+  .movie-page-title {
+    margin-bottom: 1.25rem;
+  }
+
+  .movie-page-status {
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .movie-results-grid {
+    grid-template-columns: 1fr;
   }
 }

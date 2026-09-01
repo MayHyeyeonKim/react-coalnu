@@ -4,9 +4,10 @@ import "./MovieCard.style.css";
 interface MovieCardProp {
   movie: Movie;
   genreMap: GenreMap;
+  variant?: "carousel" | "grid";
 }
 
-function MovieCard({ movie, genreMap }: MovieCardProp) {
+function MovieCard({ movie, genreMap, variant = "carousel" }: MovieCardProp) {
   const previewPath = movie.backdrop_path ?? movie.poster_path;
   const genreNames = movie.genre_ids
     .map((id) => genreMap[id])
@@ -14,7 +15,7 @@ function MovieCard({ movie, genreMap }: MovieCardProp) {
     .slice(0, 3);
 
   return (
-    <article className="movie-card">
+    <article className={`movie-card movie-card--${variant}`}>
       <div
         className="movie-card-preview"
         style={{

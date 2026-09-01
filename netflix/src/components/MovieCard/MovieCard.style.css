@@ -76,6 +76,17 @@
   visibility: hidden;
 }
 
+.movie-card--grid {
+  width: 100%;
+}
+
+.movie-card--grid .movie-card-info {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+}
+
 .movie-card-actions {
   align-items: center;
   display: flex;
@@ -189,5 +200,9 @@
     pointer-events: auto;
     transform: translateY(0);
     visibility: visible;
+  }
+
+  .movie-card--grid:hover {
+    z-index: 30;
   }
 }

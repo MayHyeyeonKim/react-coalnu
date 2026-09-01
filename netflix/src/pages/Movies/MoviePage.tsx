@@ -1,6 +1,6 @@
-import { Alert } from "react-bootstrap";
+import { Alert, Col, Row, Container } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
-import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
+import MovieCard from "../../components/MovieCard/MovieCard";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenres";
 import { useMovieSearch } from "../../hooks/useMovieSearch";
 import "./MoviePage.style.css";
@@ -35,13 +35,38 @@ const MoviePage = () => {
 
   return (
     <main className="movie-page">
-      <h1 className="movie-page-title">{keyword ? `Results for “${keyword}”` : "Popular Movies"}</h1>
+      <Container fluid="xl">
+        <h1 className="movie-page-title">
+          {keyword ? `Results for “${keyword}”` : "Popular Movies"}
+        </h1>
 
-      {moviesData.length > 0 ? (
-        <MovieCarousel movies={moviesData} genreMap={genreMap} />
-      ) : (
-        <p className="movie-page-empty">No movies found for “{keyword}”.</p>
-      )}
+        <Row className="g-4">
+          <Col md={3}>sort</Col>
+
+          <Col md={9}>
+            {moviesData.length > 0 ? (
+              <>
+                <div className="movie-results-header">
+                  <span>{moviesData.length} titles</span>
+                </div>
+
+                <div className="movie-results-grid">
+                  {moviesData.map((movie) => (
+                    <MovieCard
+                      key={movie.id}
+                      movie={movie}
+                      genreMap={genreMap}
+                      variant="grid"
+                    />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <p className="movie-page-empty">No movies found for “{keyword}”.</p>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </main>
   );
 };
