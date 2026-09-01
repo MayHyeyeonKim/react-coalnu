@@ -43,6 +43,21 @@
   text-shadow: 0 2px 5px #000;
   z-index: 1;
 }
+/* 스마트폰이나 태블릿 같은 터치 기기라면 이 CSS를 적용해 */
+@media (hover: none), (pointer: coarse) {
+  .movie-card {
+    width: 100%;
+  }
+
+  .movie-card-info {
+    display: none;
+  }
+
+  .movie-card-preview h4 {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+}
 
 .movie-card-info {
   background: #181818;

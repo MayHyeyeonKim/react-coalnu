@@ -1,5 +1,5 @@
 .movie-section {
-  padding: 1.5rem 0 2rem;
+  padding: 1.25rem 0 1.75rem;
 }
 
 .movie-section-title,
@@ -9,8 +9,13 @@
 }
 
 @media (max-width: 767.98px) {
+  .movie-section {
+    padding: 0.85rem 0 1.15rem;
+  }
+
   .movie-section-title,
   .movie-section-status {
+    font-size: 1.2rem;
     padding: 0 1rem;
   }
 }

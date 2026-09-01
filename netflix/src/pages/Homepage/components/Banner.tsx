@@ -19,11 +19,13 @@ function Banner() {
     return null;
   }
 
+  const bannerPath = movie.backdrop_path ?? movie.poster_path;
+
   return (
     <div
       style={{
-        backgroundImage: movie.poster_path
-          ? `url(https://media.themoviedb.org/t/p/w533_and_h300_face/${movie.poster_path})`
+        backgroundImage: bannerPath
+          ? `url(https://media.themoviedb.org/t/p/w1280_and_h720_face/${bannerPath})`
           : undefined,
       }}
       className="banner"

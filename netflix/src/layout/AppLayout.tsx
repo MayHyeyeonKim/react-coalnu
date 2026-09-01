@@ -38,7 +38,7 @@ function AppLayout() {
 
   return (
     <div>
-      <Navbar expand="lg" className="bg-black" data-bs-theme="dark">
+      <Navbar expand="lg" className="netflix-navbar bg-black" data-bs-theme="dark">
         <Container fluid>
           <Navbar.Brand as={Link} to="/" className="netflix-logo">
             NETFLIX

@@ -1,28 +1,77 @@
-.banner{
-    height: 56vh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.banner {
+  align-items: stretch;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  min-height: clamp(28rem, 56vh, 44rem);
+  position: relative;
 }
 
-.banner:before{
-    content:"";
-    background:linear-gradient(to top, black, transparent);
-    position: absolute;
-    left: 0;
-    height:56vh;
+.banner::before {
+  background:
+    linear-gradient(to top, #000 0%, transparent 45%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.86) 0%, transparent 65%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.banner-text-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 42rem;
+  padding: clamp(2rem, 5vw, 5rem);
+  position: relative;
+  width: 52%;
+  z-index: 1;
+}
+
+.banner-text-area h1 {
+  font-size: clamp(2rem, 4vw, 4.25rem);
+  font-weight: 700;
+}
+
+.banner-text-area p {
+  display: -webkit-box;
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+@media (max-width: 991.98px) {
+  .banner-text-area {
+    width: 68%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .banner {
+    align-items: flex-end;
+    background-position: center top;
+    min-height: 62svh;
+  }
+
+  .banner::before {
+    background: linear-gradient(to top, #000 5%, rgba(0, 0, 0, 0.72) 42%, transparent 78%);
+  }
+
+  .banner-text-area {
+    justify-content: flex-end;
+    max-width: none;
+    padding: 2rem 1rem 2.5rem;
     width: 100%;
-}
+  }
 
-.banner-text-area{
-    width: 36%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding: 2rem; /* rem = relative to the root element, em = relative to the current element */
-}
+  .banner-text-area h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
 
-.banner-text-area > * {
-    z-index: 2
+  .banner-text-area p {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
+  }
 }

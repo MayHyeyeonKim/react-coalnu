@@ -1,8 +1,18 @@
-  html,
-  body,
-  #root {
-    min-height: 100%;
-    margin: 0;
-    background-color: black;
-    color: white;
-  }
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+}

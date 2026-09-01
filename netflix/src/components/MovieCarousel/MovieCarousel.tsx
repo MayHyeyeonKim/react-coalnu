@@ -21,10 +21,13 @@ function MovieCarousel({ movies, genreMap }: MovieCarouselProps) {
   return (
     <Carousel
       infinite
-      centerMode
+      partialVisible
+      swipeable
+      draggable
       itemClass="movie-carousel-item p-1"
       containerClass="movie-carousel"
       responsive={movieCarouselResponsive}
+      removeArrowOnDeviceType={["tablet", "largeMobile", "mobile"]}
     >
       {movies.map((movie) => (
         <MovieCard movie={movie} genreMap={genreMap} key={movie.id} />

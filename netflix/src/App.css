@@ -2,6 +2,15 @@ body{
   color: white !important
 }
 
+/* 
+2vw = 화면 너비의 2%, 
+clamp: 꽉 잡아서 고정하다, 범위를 제한하다
+clamp(최소값, 원하는값, 최대값)
+*/
+.netflix-navbar {
+  padding-inline: clamp(0.25rem, 2vw, 2rem);
+}
+
 .netflix-logo {
   color: #e50914 !important;
   font-family: Impact, "Arial Black", sans-serif;
@@ -125,8 +134,23 @@ body{
 }
 
 @media (max-width: 991.98px) {
+  .netflix-logo {
+    font-size: 1.9rem;
+  }
+
+  .netflix-navbar .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .netflix-navbar .navbar-collapse {
+    padding: 0.5rem 0 1rem;
+  }
+
   .netflix-nav {
     align-items: stretch;
+    gap: 0.15rem;
+    max-height: calc(100svh - 12rem);
+    overflow-y: auto;
   }
 
   .netflix-nav .nav-link {
@@ -140,5 +164,26 @@ body{
 
   .netflix-search.is-open {
     width: 100%;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .netflix-logo {
+    font-size: 1.7rem;
+    margin-right: 0.5rem;
+  }
+
+  .netflix-nav .nav-link {
+    padding: 0.65rem 0.75rem !important;
+  }
+
+  .netflix-search {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  .netflix-search-button {
+    flex-basis: 2.75rem;
+    height: 2.75rem;
   }
 }
