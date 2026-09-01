@@ -1,6 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
 import Homepage from "./pages/Homepage/Homepage";

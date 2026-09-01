@@ -3,13 +3,26 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useEffect, useRef, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function AppLayout() {
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const query = searchQuery.trim();
+
+    navigate(query ? `/movies?q=${encodeURIComponent(query)}` : "/movies");
+    setSearchQuery("");
+    setSearchOpen(false);
+  };
 
   const activeNav = location.pathname.startsWith("/movies") ? "movies" : location.hash.slice(1) || "home";
 
@@ -27,17 +40,22 @@ function AppLayout() {
     return () => document.removeEventListener("pointerdown", closeSearchOnOutsideClick);
   }, [searchOpen]);
 
-  const toggleSearch = () => {
-    const willOpen = !searchOpen;
-    setSearchOpen(willOpen);
+  const handleSearchButtonClick = () => {
+    if (!searchOpen) {
+      setSearchOpen(true);
 
-    if (willOpen) {
-      window.requestAnimationFrame(() => searchInputRef.current?.focus());
+      requestAnimationFrame(() => {
+        searchInputRef.current?.focus();
+      });
+
+      return;
     }
+
+    searchRef.current?.requestSubmit();
   };
 
   return (
-    <div>
+    <div className="app-shell">
       <Navbar expand="lg" className="netflix-navbar bg-black" data-bs-theme="dark">
         <Container fluid>
           <Navbar.Brand as={Link} to="/" className="netflix-logo">
@@ -71,14 +89,18 @@ function AppLayout() {
             <Form
               ref={searchRef}
               className={`netflix-search ${searchOpen ? "is-open" : ""}`}
-              onSubmit={(event) => event.preventDefault()}
+              onSubmit={handleSubmit}
               onKeyDown={(event) => {
                 if (event.key === "Escape") {
                   setSearchOpen(false);
                 }
               }}
             >
-              <button type="button" className="netflix-search-button" onClick={toggleSearch}>
+              <button
+                type="button"
+                className="netflix-search-button"
+                onClick={handleSearchButtonClick}
+              >
                 <i className="bi bi-search" />
               </button>
               <Form.Control
@@ -86,6 +108,8 @@ function AppLayout() {
                 type="search"
                 placeholder="Titles, genres, games"
                 disabled={!searchOpen}
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
               />
             </Form>
           </Navbar.Collapse>
