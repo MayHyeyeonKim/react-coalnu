@@ -10,7 +10,7 @@ export interface Movie {
   adult: boolean;
 }
 
-export interface PopularMoviesResponse {
+export interface MoviesResponse {
   results: Movie[];
 }
 
@@ -22,3 +22,5 @@ export interface Genre {
 export interface MovieGenresResponse {
   genres: Genre[];
 }
+
+export type GenreMap = Record<number, string>;

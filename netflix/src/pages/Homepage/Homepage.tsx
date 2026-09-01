@@ -1,10 +1,13 @@
+import MovieSection from "../../components/MovieSection/MovieSection";
 import Banner from "./components/Banner";
-import PopularMovieSlide from "./components/PopularMovieSlide/PopularMovieSlide";
+
 const Homepage = () => {
   return (
     <div>
       <Banner />
-      <PopularMovieSlide />
+      <MovieSection title="Popular Movies" category="popular" />
+      <MovieSection title="Top Rated Movies" category="top_rated" />
+      <MovieSection title="Upcoming Movies" category="upcoming" />
     </div>
   );
 };

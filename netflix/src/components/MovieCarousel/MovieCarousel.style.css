@@ -1,0 +1,43 @@
+.movie-carousel {
+  min-height: 330px;
+  padding: 2rem 3.75rem;
+}
+
+.movie-carousel .react-multi-carousel-track {
+  align-items: center;
+}
+
+.movie-carousel-item {
+  overflow: visible;
+  position: relative;
+}
+
+.movie-carousel .react-multiple-carousel__arrow {
+  background-color: rgba(20, 20, 20, 0.85);
+  z-index: 10;
+}
+
+.movie-carousel .react-multiple-carousel__arrow:hover {
+  background-color: rgba(229, 9, 20, 0.95);
+}
+
+.movie-carousel .react-multiple-carousel__arrow--left {
+  left: 0.5rem;
+}
+
+.movie-carousel .react-multiple-carousel__arrow--right {
+  right: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .movie-carousel {
+    min-height: 420px;
+    padding: 1.5rem 3.25rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .movie-carousel {
+    min-height: 440px;
+  }
+}

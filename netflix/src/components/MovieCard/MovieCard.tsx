@@ -1,9 +1,9 @@
-import type { Movie } from "../../../../types/movie";
+import type { GenreMap, Movie } from "../../types/movie";
 import "./MovieCard.style.css";
 
 interface MovieCardProp {
   movie: Movie;
-  genreMap: Record<number, string>;
+  genreMap: GenreMap;
 }
 
 function MovieCard({ movie, genreMap }: MovieCardProp) {

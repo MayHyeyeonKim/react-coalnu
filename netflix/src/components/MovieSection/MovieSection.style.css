@@ -1,0 +1,16 @@
+.movie-section {
+  padding: 1.5rem 0 2rem;
+}
+
+.movie-section-title,
+.movie-section-status {
+  margin: 0;
+  padding: 0 3.75rem;
+}
+
+@media (max-width: 767.98px) {
+  .movie-section-title,
+  .movie-section-status {
+    padding: 0 1rem;
+  }
+}

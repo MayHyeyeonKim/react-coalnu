@@ -155,7 +155,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .movie-slider:hover {
+  .movie-carousel-item:hover {
     z-index: 20;
   }
 
