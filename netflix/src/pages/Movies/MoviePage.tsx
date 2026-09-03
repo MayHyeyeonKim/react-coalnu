@@ -4,6 +4,7 @@ import ReactPaginateImport from "react-paginate";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import MovieDetailModal from "../../components/MovieDetailModal/MovieDetailModal";
+import MovieFilter from "../../components/MovieFilter/MovieFilter";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenres";
 import { useMovieSearch } from "../../hooks/useMovieSearch";
 import type { MovieSortBy } from "../../types/movie";
@@ -28,6 +29,7 @@ const MoviePage = () => {
   const [searchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState<MovieSortBy>("popularity.desc");
   const keyword = searchParams.get("q")?.trim() ?? "";
+  const [selectedGenreIds, setSelectedGenreIds] = useState<number[]>([]);
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [pagination, setPagination] = useState({ keyword, page: 1 });
   const page = pagination.keyword === keyword ? pagination.page : 1;
@@ -52,7 +54,26 @@ const MoviePage = () => {
     setPagination({ keyword, page: 1 });
   };
 
-  const { data: moviesData } = useMovieSearch({ sortBy, keyword, page: apiPage });
+  const handleToggleGenre = (genreId: number) => {
+    setSelectedGenreIds((previousGenreIds) =>
+      previousGenreIds.includes(genreId)
+        ? previousGenreIds.filter((selectedGenreId) => selectedGenreId !== genreId)
+        : [...previousGenreIds, genreId],
+    );
+    setPagination({ keyword, page: 1 });
+  };
+
+  const handleClearFilters = () => {
+    setSelectedGenreIds([]);
+    setPagination({ keyword, page: 1 });
+  };
+
+  const { data: moviesData } = useMovieSearch({
+    sortBy,
+    keyword,
+    page: apiPage,
+    genreIds: selectedGenreIds,
+  });
   const { data: genreMap } = useMovieGenresQuery();
 
   const handlePageClick = ({ selected }: { selected: number }) => {
@@ -71,9 +92,18 @@ const MoviePage = () => {
         <h1 className="movie-page-title">{keyword ? `Results for “${keyword}”` : "Popular Movies"}</h1>
 
         <Row className="g-4">
-          <Col md={3}>sort</Col>
+          {!keyword && (
+            <Col md={3}>
+              <MovieFilter
+                genreMap={genreMap}
+                selectedGenreIds={selectedGenreIds}
+                onToggleGenre={handleToggleGenre}
+                onClearFilters={handleClearFilters}
+              />
+            </Col>
+          )}
 
-          <Col md={9}>
+          <Col md={keyword ? 12 : 9}>
             {moviesData.results.length > 0 ? (
               <>
                 <div className="movie-results-header">
