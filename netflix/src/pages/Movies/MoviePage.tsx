@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, Row } from "react-bootstrap";
 import ReactPaginateImport from "react-paginate";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import MovieDetailModal from "../../components/MovieDetailModal/MovieDetailModal";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenres";
 import { useMovieSearch } from "../../hooks/useMovieSearch";
+import type { MovieSortBy } from "../../types/movie";
 import "./MoviePage.style.css";
 
 const ReactPaginate =
@@ -17,9 +18,15 @@ const ReactPaginate =
 
 const MAX_TMDB_PAGE = 500;
 const MOVIES_PER_PAGE = 20;
+const SORT_LABELS: Record<MovieSortBy, string> = {
+  "popularity.desc": "Popular",
+  "primary_release_date.desc": "Latest",
+  "vote_average.desc": "Rating",
+};
 
 const MoviePage = () => {
   const [searchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState<MovieSortBy>("popularity.desc");
   const keyword = searchParams.get("q")?.trim() ?? "";
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [pagination, setPagination] = useState({ keyword, page: 1 });
@@ -40,34 +47,17 @@ const MoviePage = () => {
     navigate(`/movies/${movieId}`);
   };
 
-  const {
-    data: moviesData,
-    isLoading: moviesLoading,
-    isError: moviesIsError,
-    error: moviesError,
-  } = useMovieSearch({ keyword, page: apiPage });
-  const {
-    data: genreMap,
-    isLoading: genresLoading,
-    isError: genresIsError,
-    error: genresError,
-  } = useMovieGenresQuery();
+  const handleSortChange = (sortOption: MovieSortBy) => {
+    setSortBy(sortOption);
+    setPagination({ keyword, page: 1 });
+  };
+
+  const { data: moviesData } = useMovieSearch({ sortBy, keyword, page: apiPage });
+  const { data: genreMap } = useMovieGenresQuery();
 
   const handlePageClick = ({ selected }: { selected: number }) => {
     setPagination({ keyword, page: selected + 1 });
   };
-
-  if (moviesLoading || genresLoading) {
-    return <h2 className="movie-page-status">Loading...</h2>;
-  }
-
-  if (moviesIsError || genresIsError) {
-    return <Alert variant="danger">{moviesError?.message ?? genresError?.message}</Alert>;
-  }
-
-  if (!moviesData || !genreMap) {
-    return null;
-  }
 
   const pageCount = Number.isFinite(moviesData.total_pages)
     ? Math.min(MAX_TMDB_PAGE, Math.max(0, Math.floor(moviesData.total_pages)))
@@ -87,6 +77,20 @@ const MoviePage = () => {
             {moviesData.results.length > 0 ? (
               <>
                 <div className="movie-results-header">
+                  {!keyword && (
+                    <Dropdown className="movie-sort-dropdown">
+                      <Dropdown.Toggle variant="dark" id="movie-sort-dropdown" className="movie-sort-toggle">
+                        Sort by: {SORT_LABELS[sortBy]}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handleSortChange("popularity.desc")}>Popular</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleSortChange("primary_release_date.desc")}>Latest</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleSortChange("vote_average.desc")}>Rating</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )}
+
                   <span>
                     Showing {firstMovieNumber.toLocaleString()}–{lastMovieNumber.toLocaleString()} of{" "}
                     {moviesData.total_results.toLocaleString()} titles

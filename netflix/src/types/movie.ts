@@ -34,3 +34,5 @@ export interface MovieGenresResponse {
 }
 
 export type GenreMap = Record<number, string>;
+
+export type MovieSortBy = "popularity.desc" | "primary_release_date.desc" | "vote_average.desc";

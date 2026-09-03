@@ -1,20 +1,28 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import type { MoviesResponse } from "../types/movie";
+import type { MoviesResponse, MovieSortBy } from "../types/movie";
 import api from "../utils/api";
 
-export const useMovieSearch = ({ keyword, page }: { keyword: string; page: number }) => {
-    return useSuspenseQuery({
-        queryKey: ["movie-search", keyword || "popular", page],
-        queryFn: async () => {
-            const response = keyword
-                ? await api.get<MoviesResponse>("/search/movie", {
-                    params: { query: keyword, page },
-                })
-                : await api.get<MoviesResponse>("/movie/popular", {
-                    params: { page },
-                });
+export const useMovieSearch = ({
+  sortBy,
+  keyword,
+  page,
+}: {
+  sortBy: MovieSortBy;
+  keyword: string;
+  page: number;
+}) => {
+  return useSuspenseQuery({
+    queryKey: ["movie-search", keyword || "popular", sortBy, page],
+    queryFn: async () => {
+      const response = keyword
+        ? await api.get<MoviesResponse>("/search/movie", {
+            params: { query: keyword, page },
+          })
+        : await api.get<MoviesResponse>("/discover/movie", {
+            params: { page, sort_by: sortBy },
+          });
 
-            return response.data;
-        },
-    });
+      return response.data;
+    },
+  });
 };

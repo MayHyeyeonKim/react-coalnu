@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
@@ -22,7 +24,16 @@ function App() {
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Homepage />} />
         <Route path="movies">
-          <Route index element={<MoviePage />} />
+          <Route
+            index
+            element={
+              <ErrorBoundary fallback={<p>Unable to load movies.</p>}>
+                <Suspense fallback={<p>Loading movies...</p>}>
+                  <MoviePage />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          />
           <Route path=":id" element={<MovieDetailPage />} />
         </Route>
       </Route>
