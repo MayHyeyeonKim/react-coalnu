@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import type { MoviesResponse } from "../types/movie";
 import api from "../utils/api";
 
@@ -10,7 +10,7 @@ async function fetchMovies(category: MovieCategory) {
 }
 
 export const useMoviesQuery = (category: MovieCategory) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ["movies", category],
     queryFn: () => fetchMovies(category),
   });

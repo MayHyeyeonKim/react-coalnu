@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import type { MoviesResponse } from "../types/movie";
 import api from "../utils/api";
 
 export const useMovieSearch = ({ keyword, page }: { keyword: string; page: number }) => {
-    return useQuery({
+    return useSuspenseQuery({
         queryKey: ["movie-search", keyword || "popular", page],
         queryFn: async () => {
             const response = keyword

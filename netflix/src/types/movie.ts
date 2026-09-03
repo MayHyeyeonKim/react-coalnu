@@ -10,6 +10,12 @@ export interface Movie {
   adult: boolean;
 }
 
+export interface MovieDetails extends Omit<Movie, "genre_ids"> {
+  genres: Genre[];
+  release_date: string;
+  runtime: number | null;
+}
+
 export interface MoviesResponse {
   page: number;
   results: Movie[];

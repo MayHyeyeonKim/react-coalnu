@@ -3,15 +3,17 @@ import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPaginateImport from "react-paginate";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import MovieDetailModal from "../../components/MovieDetailModal/MovieDetailModal";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenres";
 import { useMovieSearch } from "../../hooks/useMovieSearch";
 import "./MoviePage.style.css";
 
-const ReactPaginate = (
-  ReactPaginateImport as typeof ReactPaginateImport & {
-    default?: typeof ReactPaginateImport;
-  }
-).default ?? ReactPaginateImport;
+const ReactPaginate =
+  (
+    ReactPaginateImport as typeof ReactPaginateImport & {
+      default?: typeof ReactPaginateImport;
+    }
+  ).default ?? ReactPaginateImport;
 
 const MAX_TMDB_PAGE = 500;
 const MOVIES_PER_PAGE = 20;
@@ -19,9 +21,18 @@ const MOVIES_PER_PAGE = 20;
 const MoviePage = () => {
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get("q")?.trim() ?? "";
+  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [pagination, setPagination] = useState({ keyword, page: 1 });
   const page = pagination.keyword === keyword ? pagination.page : 1;
   const apiPage = Math.min(page, MAX_TMDB_PAGE);
+
+  const handleOpenDetails = (movieId: number) => {
+    setSelectedMovieId(movieId);
+  };
+
+  const handleCloseDetails = () => {
+    setSelectedMovieId(null);
+  };
   const {
     data: moviesData,
     isLoading: moviesLoading,
@@ -55,10 +66,7 @@ const MoviePage = () => {
     ? Math.min(MAX_TMDB_PAGE, Math.max(0, Math.floor(moviesData.total_pages)))
     : 0;
   const firstMovieNumber = (apiPage - 1) * MOVIES_PER_PAGE + 1;
-  const lastMovieNumber = Math.min(
-    firstMovieNumber + moviesData.results.length - 1,
-    moviesData.total_results,
-  );
+  const lastMovieNumber = Math.min(firstMovieNumber + moviesData.results.length - 1, moviesData.total_results);
 
   return (
     <main className="movie-page">
@@ -80,7 +88,13 @@ const MoviePage = () => {
 
                 <div className="movie-results-grid">
                   {moviesData.results.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} genreMap={genreMap} variant="grid" />
+                    <MovieCard
+                      key={movie.id}
+                      movie={movie}
+                      genreMap={genreMap}
+                      variant="grid"
+                      onOpenDetails={handleOpenDetails}
+                    />
                   ))}
                 </div>
                 {pageCount > 1 && (
@@ -112,6 +126,8 @@ const MoviePage = () => {
             )}
           </Col>
         </Row>
+
+        <MovieDetailModal movieId={selectedMovieId} onClose={handleCloseDetails} />
       </Container>
     </main>
   );

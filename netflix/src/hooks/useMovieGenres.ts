@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import type { GenreMap, MovieGenresResponse } from "../types/movie";
 import api from "../utils/api";
 
@@ -9,7 +9,7 @@ async function fetchMovieGenres(): Promise<GenreMap> {
 }
 
 export const useMovieGenresQuery = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ["movie-genres"],
     queryFn: fetchMovieGenres,
     staleTime: Infinity,

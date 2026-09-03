@@ -5,9 +5,10 @@ interface MovieCardProp {
   movie: Movie;
   genreMap: GenreMap;
   variant?: "carousel" | "grid";
+  onOpenDetails: (movieId: number) => void;
 }
 
-function MovieCard({ movie, genreMap, variant = "carousel" }: MovieCardProp) {
+function MovieCard({ movie, genreMap, variant = "carousel", onOpenDetails }: MovieCardProp) {
   const previewPath = movie.backdrop_path ?? movie.poster_path;
   const genreNames = movie.genre_ids
     .map((id) => genreMap[id])
@@ -27,15 +28,38 @@ function MovieCard({ movie, genreMap, variant = "carousel" }: MovieCardProp) {
         <h4>{movie.title}</h4>
       </div>
 
-      <div className="movie-card-info">
+      <div
+        className="movie-card-info"
+        onClick={() => {
+          onOpenDetails(movie.id);
+        }}
+      >
         <div className="movie-card-actions">
-          <button type="button" className="movie-action movie-action-play">
+          <button
+            type="button"
+            className="movie-action movie-action-play"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
             <i className="bi bi-play-fill" />
           </button>
-          <button type="button" className="movie-action">
+          <button
+            type="button"
+            className="movie-action"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
             <i className="bi bi-plus-lg" />
           </button>
-          <button type="button" className="movie-action">
+          <button
+            type="button"
+            className="movie-action"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
             <i className="bi bi-hand-thumbs-up" />
           </button>
           <button type="button" className="movie-action movie-action-more">

@@ -1,0 +1,122 @@
+.movie-detail-backdrop.show {
+  opacity: 0.78;
+}
+
+.movie-detail-modal .modal-content {
+  background-color: #181818;
+  border: 0;
+  border-radius: 0.75rem;
+  color: #fff;
+  overflow: hidden;
+}
+
+.movie-detail-body {
+  min-height: 26rem;
+  padding: 0;
+  position: relative;
+}
+
+.movie-detail-close {
+  align-items: center;
+  background-color: rgba(24, 24, 24, 0.9);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2.5rem;
+  z-index: 2;
+}
+
+.movie-detail-hero {
+  aspect-ratio: 16 / 8;
+  background-color: #252525;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.movie-detail-hero::after {
+  background: linear-gradient(to top, #181818, transparent 75%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.movie-detail-content {
+  margin-top: -3rem;
+  padding: 0 2rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.movie-detail-content h2 {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+.movie-detail-metadata,
+.movie-detail-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.movie-detail-metadata {
+  align-items: center;
+  color: #d2d2d2;
+  font-size: 0.9rem;
+}
+
+.movie-detail-rating {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.movie-detail-age-rating {
+  border: 1px solid #777;
+  padding: 0 0.3rem;
+}
+
+.movie-detail-overview {
+  color: #f1f1f1;
+  line-height: 1.6;
+  margin: 1.25rem 0 0;
+}
+
+.movie-detail-genres span {
+  color: #b3b3b3;
+  font-size: 0.85rem;
+}
+
+.movie-detail-genres span:not(:last-child)::after {
+  background-color: #777;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 0.3rem;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+  width: 0.3rem;
+}
+
+.movie-detail-status {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 26rem;
+}
+
+@media (max-width: 575.98px) {
+  .movie-detail-content {
+    margin-top: -1.5rem;
+    padding: 0 1.25rem 1.5rem;
+  }
+}
