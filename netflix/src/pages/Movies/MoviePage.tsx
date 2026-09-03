@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPaginateImport from "react-paginate";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import MovieDetailModal from "../../components/MovieDetailModal/MovieDetailModal";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenres";
@@ -26,6 +26,8 @@ const MoviePage = () => {
   const page = pagination.keyword === keyword ? pagination.page : 1;
   const apiPage = Math.min(page, MAX_TMDB_PAGE);
 
+  const navigate = useNavigate();
+
   const handleOpenDetails = (movieId: number) => {
     setSelectedMovieId(movieId);
   };
@@ -33,6 +35,11 @@ const MoviePage = () => {
   const handleCloseDetails = () => {
     setSelectedMovieId(null);
   };
+
+  const handleGoToDetailPage = (movieId: number) => {
+    navigate(`/movies/${movieId}`);
+  };
+
   const {
     data: moviesData,
     isLoading: moviesLoading,
@@ -94,6 +101,7 @@ const MoviePage = () => {
                       genreMap={genreMap}
                       variant="grid"
                       onOpenDetails={handleOpenDetails}
+                      onGoToDetailPage={handleGoToDetailPage}
                     />
                   ))}
                 </div>

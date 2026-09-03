@@ -6,6 +6,7 @@ import type { GenreMap, Movie } from "../../types/movie";
 import MovieCard from "../MovieCard/MovieCard";
 import MovieDetailModal from "../MovieDetailModal/MovieDetailModal";
 import "./MovieCarousel.style.css";
+import { useNavigate } from "react-router-dom";
 
 const Carousel =
   (
@@ -22,12 +23,17 @@ interface MovieCarouselProps {
 function MovieCarousel({ movies, genreMap }: MovieCarouselProps) {
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
 
+  const navigate = useNavigate();
   const handleOpenDetails = (movieId: number) => {
     setSelectedMovieId(movieId);
   };
 
   const handleCloseDetails = () => {
     setSelectedMovieId(null);
+  };
+
+  const handleGoToDetailPage = (movieId: number) => {
+    navigate(`/movies/${movieId}`);
   };
 
   return (
@@ -43,7 +49,13 @@ function MovieCarousel({ movies, genreMap }: MovieCarouselProps) {
         removeArrowOnDeviceType={["tablet", "largeMobile", "mobile"]}
       >
         {movies.map((movie) => (
-          <MovieCard movie={movie} genreMap={genreMap} key={movie.id} onOpenDetails={handleOpenDetails} />
+          <MovieCard
+            movie={movie}
+            genreMap={genreMap}
+            key={movie.id}
+            onOpenDetails={handleOpenDetails}
+            onGoToDetailPage={handleGoToDetailPage}
+          />
         ))}
       </Carousel>
 

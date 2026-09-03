@@ -11,6 +11,7 @@ export interface Movie {
 }
 
 export interface MovieDetails extends Omit<Movie, "genre_ids"> {
+  budget: number;
   genres: Genre[];
   release_date: string;
   runtime: number | null;

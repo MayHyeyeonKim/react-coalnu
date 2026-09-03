@@ -6,9 +6,10 @@ interface MovieCardProp {
   genreMap: GenreMap;
   variant?: "carousel" | "grid";
   onOpenDetails: (movieId: number) => void;
+  onGoToDetailPage: (movieId: number) => void;
 }
 
-function MovieCard({ movie, genreMap, variant = "carousel", onOpenDetails }: MovieCardProp) {
+function MovieCard({ movie, genreMap, variant = "carousel", onOpenDetails, onGoToDetailPage }: MovieCardProp) {
   const previewPath = movie.backdrop_path ?? movie.poster_path;
   const genreNames = movie.genre_ids
     .map((id) => genreMap[id])
@@ -62,7 +63,14 @@ function MovieCard({ movie, genreMap, variant = "carousel", onOpenDetails }: Mov
           >
             <i className="bi bi-hand-thumbs-up" />
           </button>
-          <button type="button" className="movie-action movie-action-more">
+          <button
+            type="button"
+            className="movie-action movie-action-more"
+            onClick={(event) => {
+              event.stopPropagation();
+              onGoToDetailPage(movie.id);
+            }}
+          >
             <i className="bi bi-chevron-down" />
           </button>
         </div>
