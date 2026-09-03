@@ -33,6 +33,23 @@ export interface MovieGenresResponse {
   genres: Genre[];
 }
 
+export interface MovieReview {
+  id: string;
+  author: string;
+  author_details: {
+    rating: number | null;
+  };
+  content: string;
+  created_at: string;
+}
+
+export interface MovieReviewsResponse {
+  page: number;
+  results: MovieReview[];
+  total_pages: number;
+  total_results: number;
+}
+
 export type GenreMap = Record<number, string>;
 
 export type MovieSortBy = "popularity.desc" | "primary_release_date.desc" | "vote_average.desc";

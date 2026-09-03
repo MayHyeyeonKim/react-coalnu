@@ -1,6 +1,7 @@
 import { Alert, Container, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMovieDetailsQuery } from "../../hooks/useMovieDetails";
+import MovieReviews from "../../components/MovieReviews/MovieReviews";
 import "./MovieDetailPage.style.css";
 
 const MovieDetailPage = () => {
@@ -102,6 +103,8 @@ const MovieDetailPage = () => {
             </dl>
           </div>
         </section>
+
+        <MovieReviews movieId={movieId} />
       </Container>
     </main>
   );
